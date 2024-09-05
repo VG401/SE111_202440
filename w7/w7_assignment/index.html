@@ -8,107 +8,107 @@
     <meta name="description" content="Week 7 Assignment practicing Javascript & HTML">
     <title>Week 7 | Pay Form Calculator Assignment</title>
 </head>
-<body>
-
-    <!--title of the page-->
+   <!--title of the page-->
    <h1> Pay Calculator Form </h1>
 
    <!--start of the form-->
-   <!--each <input> must have an id that matches its corresponding label -->
-   <!--each form element is separated by a break space (new line) -->
-    <form>
-        <label for="first">First Name: </label>
-        <input type="text" id="fname">
+   <form>
+       <table>
+           <tr>
+               <td>
+                   <label for="first">First Name: </label>
+               </td>
+               <td>
+                   <input type="text" id="fname">
+               </td>
+           </tr>
+           <tr>
+               <td>
+                   <label for="last">Last Name: </label>
+               </td>
+               <td>
+                   <input type="text" id="lname">
+               </td>
+           </tr>
+           <tr>
+               <td>
+                   <label for="hours">Hours Worked: </label>
+               </td>
+               <td>
+                   <input type="text" id="hours">
+               </td>
+           </tr>
+           <tr>
+               <td>
+                   <label for="rate">Hourly Rate: </label>
+               </td>
+               <td>
+                   <input type="text" id="rate">
+               </td>
+           </tr>
+       </table>
 
-        <br>
+       <br>
 
-        <label for="last">Last Name: </label>
-        <input type="text" id="lname">
+       <!-- give the button below (that is the only form element without a label) an id of "enter-button"-->
+       <input type="button" id="enter-button" value="Enter">
 
-        <br>
+       <br>
+       <br>
 
-        <label for="hours">Hours Worked: </label>
-        <input type="text" id="hours">
+       <div id="final" style="border:1px solid rgb(87, 86, 86); padding:15px; background-color:rgb(168, 168, 168);">
 
-        <br>
+           <h3>Employee Info: </h3>
+           <p id="info" style="font-family:Courier New, monospace;"><i>Information will be loaded once above form is filled.</i></p>
+           <p id="check" style="font-family:Courier New, monospace; width:220px; text-align:right;"></p>
+       </div>
 
-        <label for="rate">Hourly Rate: </label>
-        <input type="text" id="rate">
+       <br>
+       <br>
 
-        <br>
+       <h3><i>If the above information is correct, please press "SUBMIT"</i></h3>
+       <input type="button" id="submit" value="SUBMIT">
+   </form>
 
-        <br>
+   <script>
+       document.querySelector('#enter-button').addEventListener(`click`, alertName)
 
+       function alertName(e)
+       {
+           var fname = document.getElementById('fname').value;
+           var lname = document.getElementById('lname').value;
+           var hours = document.getElementById('hours').value;
+           var rate = document.getElementById('rate').value;
 
+           console.log(fname);
+           console.log(lname);
+           console.log(hours);
+           console.log(rate);
 
-        <!-- give the button below (that is the only form element without a label) an id of "enter-button"-->
-        <input type="button" id="enter-button" value="Enter">
+           var full = fname + " " + lname;
 
-        <br>
-        <br>
+           console.log(full);
 
-        <div id="final" style="border:1px solid rgb(87, 86, 86); padding:15px; background-color:rgb(168, 168, 168);">
+           hours = Number(hours);
+           rate = Number(rate);
 
-            <h3>Employee Info: </h3>
-            <p id="info" style="font-family:Courier New, monospace;"><i>Information will be loaded once above form is filled.</i></p>
-            <!---NOTES FOR TESTING:
-                    *below is where the form values (and new values processed by the js) will be displayed-->
-            <p id="check" style="font-family:Courier New, monospace; width:220px; text-align:right;"></p>
-        </div>
+           var gross = hours * rate;
+           var taxAmount = gross * 0.2;
+           var net = gross - taxAmount;
 
-        <br>
-        <br>
+           console.log(gross.toFixed(2));
+           console.log(taxAmount.toFixed(2));
+           console.log(net.toFixed(2));
 
-        <!--NOTES FOR TESTING:
-                *clicking the below button will trigger a call to the submitNow()
-                *success will be determined if correct info is displayed in the alert()-->
-        <h3><i>If the above information is correct, please press "SUBMIT"</i></h3>
-        <input type="button" id="submit" value="SUBMIT">
-    </form>
+           var finalMessage = `${full}<br>HOURS: ${hours}<br>RATE: $${rate.toFixed(2)}`;
 
-    <script>
-        //edit the below statement to select the #enter-button id from the HTML file
-        document.querySelector('#enter-button').addEventListener(`click`, alertName)
-        
-        
+           var info = document.getElementById('info');
+           var check = document.getElementById('check');
 
-        function alertName(e)
-        {
-        var fname = document.getElementById('fname').value;
-        var lname = document.getElementById('lname').value;
-        var hours = document.getElementById('hours').value;
-        var rate = document.getElementById('rate').value;
+           info.innerHTML = finalMessage;
+           check.innerHTML = `GROSS PAY: $${gross.toFixed(2)}<br>TAX AMOUNT: $${taxAmount.toFixed(2)}<br>NET PAY: $${net.toFixed(2)}`;
 
-        console.log(fname);
-        console.log(lname);
-        console.log(hours);
-        console.log(rate);
-
-        var full = fname + " " + lname;
-
-        console.log(full);
-
-        hours = Number(hours);
-        rate = Number(rate);
-
-        var gross = hours * rate;
-        var taxAmount = gross * 0.2;
-        var net = gross - taxAmount;
-
-        console.log(gross.toFixed(2));
-        console.log(taxAmount.toFixed(2));
-        console.log(net.toFixed(2));
-
-        var finalMessage = `${full}<br>HOURS: ${hours}<br>RATE: $${rate.toFixed(2)}`;
-
-        var info = document.getElementById('info');
-        var check = document.getElementById('check');
-
-        info.innerHTML = finalMessage;
-        check.innerHTML = `GROSS PAY: $${gross.toFixed(2)}<br>TAX AMOUNT: $${taxAmount.toFixed(2)}<br>NET PAY: $${net.toFixed(2)}`;
-
-        document.getElementById('submit').addEventListener('click', submitNow);
-        
+           document.getElementById('submit').addEventListener('click', submitNow);
             function submitNow(e)
             {
 
