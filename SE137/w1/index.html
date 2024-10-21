@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Page</title>
+    <style>
+        body {
+            background-color: #fff9bf;
+        }
+        h1{
+            color:rgb(0, 129, 0);
+
+        }
+        h2 {
+            color: #fb00ff;
+        }
+        .bio, .ed, .hobbies {
+            color: #333;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Victorino Gomes</h1>
+<hr>
+
+<div id="nav">
+    <a href="#">BIO</a>
+    <a href="#">EDUCATION</a>
+    <a href="#">HOBBIES</a>
+</div>
+<hr>
+
+<div id="main">
+    <div id="bio" class="bio">
+        <h2>My Bio</h2>
+        <img src="./images/4066324-200.png" alt="A photo of me">
+        <p>My name is Victorino Gomes, but my nickname is Rino. I've spent a majority of my life in Rhode Island with my father and step-mother but I've lived in Florida and Massachusetts. I plan to move away as soon as possible when I graduate, I want to experience a different enviorment.</p>
+        <hr>
+    </div>
+
+    <div id="ed" class="ed hide">
+        <h2>Schooling</h2>
+        <ul>
+            <li>Martin Middle School</li>
+            <li><a href="https://sites.google.com/epschoolsri.com/east-providence-high-school/home" target="_blank">East Providence High School</a></li>
+            <li>NEIT</li>
+
+
+        </ul>
+        <hr>
+    </div>
+
+    <div id="hobbies" class="hobbies hide">
+        <h2>Hobbies</h2>
+        <ol>
+            <li>Boxing</li>
+            <li>Music Production/Engineering</li>
+            <li>Video Games</li>
+        </ol>
+        <img src="./images/pngimg.com - sony_playstation_PNG17532.png" alt="Playstation Logo">
+        <hr>
+    </div>
+</div>
+
+<div id="footer">
+    ©2024 Victorino Gomes | W1 Assignment
+</div>
+
+<script>
+    const bioLink = document.querySelector('a[href="#"]');
+    const educationLink = document.querySelectorAll('a[href="#"]')[1];
+    const hobbiesLink = document.querySelectorAll('a[href="#"]')[2];
+
+    bioLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('bio').classList.remove('hide');
+        document.getElementById('ed').classList.add('hide');
+        document.getElementById('hobbies').classList.add('hide');
+    });
+
+    educationLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('ed').classList.remove('hide');
+        document.getElementById('bio').classList.add('hide');
+        document.getElementById('hobbies').classList.add('hide');
+    });
+
+    hobbiesLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('hobbies').classList.remove('hide');
+        document.getElementById('bio').classList.add('hide');
+        document.getElementById('ed').classList.add('hide');
+    });
+</script>
+
+</body>
+</html>
